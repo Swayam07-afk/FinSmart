@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en" class="h-full bg-slate-50 antialiased">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FinSmart — Understand your money. Build your future.</title>
+  <meta name="description" content="A modern, interactive financial literacy assessment, diagnostics, education, and research platform.">
+  
+  <!-- Tailwind CSS CDN with custom Fintech color extensions -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            navy: {
+              950: '#07101C',
+              900: '#0B192C',
+              800: '#1E3E62',
+              700: '#2A5380',
+              600: '#3D6D9E'
+            },
+            emerald: {
+              400: '#34D399',
+              500: '#10B981',
+              600: '#059669',
+              700: '#047857'
+            }
+          }
+        }
+      }
+    }
+  </script>
+
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+
+  <!-- Chart.js 4.4.1 -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+
+  <!-- Canvas Confetti for celebrations -->
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.2/dist/confetti.browser.min.js"></script>
+
+  <!-- Custom Styles -->
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body class="flex flex-col min-h-screen bg-slate-50 text-slate-800">
+
+  <!-- ========================================== -->
+  <!-- NAVBAR                                     -->
+  <!-- ========================================== -->
+  <header class="sticky top-0 z-40 bg-white/95 backdrop-blur-md border-b border-slate-200 shadow-xs">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex items-center justify-between h-18">
+        
+        <!-- Brand Logo -->
+        <a href="#home" class="flex items-center gap-3 group">
+          <div class="w-10 h-10 rounded-xl bg-navy-900 text-emerald-400 flex items-center justify-center shadow-md group-hover:scale-105 transition-transform">
+            <!-- Custom stylized vault/growth icon -->
+            <svg class="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+              <rect width="18" height="18" x="3" y="3" rx="4" />
+              <path d="M7 16l4-4 3 3 4-6" />
+              <circle cx="18" cy="9" r="1" fill="currentColor" />
+            </svg>
+          </div>
+          <div>
+            <span class="text-xl font-black tracking-tight text-navy-900 block leading-none">
+              Fin<span class="text-emerald-800">Smart</span>
+            </span>
+            <span class="text-[10px] text-slate-600 font-medium tracking-wide">
+              Understand money • Build future
+            </span>
+          </div>
+        </a>
+
+        <!-- Desktop Navigation Links -->
+        <nav class="hidden lg:flex items-center gap-1 xl:gap-2">
+          <a href="#home" class="nav-link px-3 py-2 rounded-lg text-xs xl:text-sm font-semibold transition" data-route="home">
+            Home
+          </a>
+          <a href="#about" class="nav-link px-3 py-2 rounded-lg text-xs xl:text-sm font-semibold transition" data-route="about">
+            About
+          </a>
+          <a href="#learn" class="nav-link px-3 py-2 rounded-lg text-xs xl:text-sm font-semibold transition" data-route="learn">
+            Learn
+          </a>
+          <a href="#calculators" class="nav-link px-3 py-2 rounded-lg text-xs xl:text-sm font-semibold transition" data-route="calculators">
+            Calculators
+          </a>
+          <a href="#quiz" class="nav-link px-3 py-2 rounded-lg text-xs xl:text-sm font-semibold transition" data-route="quiz">
+            Quiz
+          </a>
+          <a href="#insights" class="nav-link px-3 py-2 rounded-lg text-xs xl:text-sm font-semibold transition" data-route="insights">
+            Survey Insights
+          </a>
+          <a href="#results" id="nav-my-score" class="hidden nav-link px-3 py-2 rounded-lg text-xs xl:text-sm font-semibold text-emerald-800 bg-emerald-50 hover:bg-emerald-100 transition" data-route="results">
+            My Score
+          </a>
+        </nav>
+
+        <!-- CTA Action & Mobile Hamburger -->
+        <div class="flex items-center gap-3">
+          <a href="#survey" class="hidden sm:inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-xs sm:text-sm shadow-md shadow-emerald-600/25 hover:shadow-emerald-600/35 transition transform hover:-translate-y-0.5">
+            <i data-lucide="sparkles" class="w-4 h-4"></i> Take Survey
+          </a>
+
+          <!-- Mobile Hamburger Button -->
+          <button id="mobile-menu-btn" type="button" class="lg:hidden p-2.5 rounded-xl text-slate-600 hover:text-slate-900 hover:bg-slate-100 transition focus:outline-none" aria-label="Toggle Navigation Menu">
+            <i data-lucide="menu" class="w-6 h-6"></i>
+          </button>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Mobile Navigation Drawer -->
+    <div id="mobile-menu" class="hidden lg:hidden border-t border-slate-200 bg-white px-4 pt-3 pb-5 space-y-1 shadow-lg animate-fade-in">
+      <a href="#home" class="block px-3 py-2.5 rounded-xl text-sm font-semibold text-slate-700 hover:bg-slate-50">
+        Home
+      </a>
+      <a href="#about" class="block px-3 py-2.5 rounded-xl text-sm font-semibold text-slate-700 hover:bg-slate-50">
+        About Financial Literacy
+      </a>
+      <a href="#survey" class="block px-3 py-2.5 rounded-xl text-sm font-bold text-emerald-800 bg-emerald-50/80">
+        Take the Survey
+      </a>
+      <a href="#results" class="block px-3 py-2.5 rounded-xl text-sm font-semibold text-slate-700 hover:bg-slate-50">
+        My Score & Profile
+      </a>
+      <a href="#learn" class="block px-3 py-2.5 rounded-xl text-sm font-semibold text-slate-700 hover:bg-slate-50">
+        Financial Education (Learn)
+      </a>
+      <a href="#calculators" class="block px-3 py-2.5 rounded-xl text-sm font-semibold text-slate-700 hover:bg-slate-50">
+        Financial Calculators
+      </a>
+      <a href="#quiz" class="block px-3 py-2.5 rounded-xl text-sm font-semibold text-slate-700 hover:bg-slate-50">
+        Financial Literacy Quiz
+      </a>
+      <a href="#insights" class="block px-3 py-2.5 rounded-xl text-sm font-semibold text-slate-700 hover:bg-slate-50">
+        Survey Insights & Research
+      </a>
+      <a href="#privacy" class="block px-3 py-2.5 rounded-xl text-sm font-semibold text-slate-500 hover:bg-slate-50">
+        Privacy & Research Ethics
+      </a>
+    </div>
+  </header>
+
+  <!-- ========================================== -->
+  <!-- MAIN ROUTED VIEW CONTAINER                 -->
+  <!-- ========================================== -->
+  <main id="app-main" class="flex-grow">
+    <!-- Populated by router.js -->
+  </main>
+
+  <!-- ========================================== -->
+  <!-- FOOTER                                     -->
+  <!-- ========================================== -->
+  <footer class="bg-navy-950 text-slate-400 text-xs border-t border-navy-900 mt-auto">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+      <div class="grid grid-cols-1 md:grid-cols-4 gap-8 mb-10">
+        
+        <!-- Brand Col -->
+        <div class="md:col-span-2 space-y-3">
+          <div class="flex items-center gap-2.5">
+            <div class="w-8 h-8 rounded-lg bg-emerald-500 text-navy-950 flex items-center justify-center font-bold">
+              <i data-lucide="shield-check" class="w-5 h-5"></i>
+            </div>
+            <span class="text-xl font-bold text-white">Fin<span class="text-emerald-400">Smart</span></span>
+          </div>
+          <p class="text-slate-300 font-medium text-sm">
+            “Understand your money. Build your future.”
+          </p>
+          <p class="text-slate-500 text-xs max-w-md leading-relaxed">
+            An open initiative advancing financial capability, evidence-based research, and practical financial education across India.
+          </p>
+        </div>
+
+        <!-- Quick Links -->
+        <div>
+          <h4 class="text-xs font-bold uppercase tracking-wider text-white mb-3">Platform Navigation</h4>
+          <ul class="space-y-2">
+            <li><a href="#home" class="hover:text-emerald-400 transition">Home</a></li>
+            <li><a href="#about" class="hover:text-emerald-400 transition">About Financial Literacy</a></li>
+            <li><a href="#survey" class="hover:text-emerald-400 transition">Take Diagnostic Survey</a></li>
+            <li><a href="#results" class="hover:text-emerald-400 transition">Personalized Score</a></li>
+            <li><a href="#learn" class="hover:text-emerald-400 transition">Learn Modules</a></li>
+            <li><a href="#calculators" class="hover:text-emerald-400 transition">Financial Calculators</a></li>
+          </ul>
+        </div>
+
+        <!-- Research & Legal -->
+        <div>
+          <h4 class="text-xs font-bold uppercase tracking-wider text-white mb-3">Research & Governance</h4>
+          <ul class="space-y-2">
+            <li><a href="#insights" class="hover:text-emerald-400 transition">Survey Insights & Analytics</a></li>
+            <li><a href="#quiz" class="hover:text-emerald-400 transition">Take Money Quiz</a></li>
+            <li><a href="#privacy" class="hover:text-emerald-400 transition">Privacy & Data Ethics</a></li>
+            <li><a href="#admin" class="hover:text-emerald-400 transition">Admin / Researcher Portal</a></li>
+          </ul>
+        </div>
+
+      </div>
+
+      <!-- Legal Disclaimer & Copyright -->
+      <div class="pt-8 border-t border-navy-900 flex flex-col sm:flex-row items-center justify-between gap-4 text-slate-500 text-[11px]">
+        <p class="text-center sm:text-left leading-relaxed">
+          <strong>Educational & Research Disclaimer:</strong> For educational and research purposes only. This platform does not provide personalized financial advice or recommend specific financial products.
+        </p>
+        <p class="shrink-0">
+          © 2026 FinSmart Platform. All rights reserved.
+        </p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- App Bootstrap JS -->
+  <script type="module" src="js/app.js"></script>
+</body>
+</html>
