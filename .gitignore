@@ -1,0 +1,15 @@
+# Operating System Files
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+npm-debug.log*
+
+# Environment Variables
+.env
+.env.local
+.env.*.local
+
+# Dependency directories (if added later)
+node_modules/

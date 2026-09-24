@@ -98,9 +98,20 @@
           </a>
         </nav>
 
-        <!-- CTA Action & Mobile Hamburger -->
-        <div class="flex items-center gap-3">
-          <a href="#survey" class="hidden sm:inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-xs sm:text-sm shadow-md shadow-emerald-600/25 hover:shadow-emerald-600/35 transition transform hover:-translate-y-0.5">
+        <!-- CTA Action & User Auth & Mobile Hamburger -->
+        <div class="flex items-center gap-2 sm:gap-3">
+          <!-- Auth State Container (Desktop) -->
+          <div id="nav-auth-container" class="flex items-center">
+            <a href="#login" id="nav-btn-signin" class="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-xl text-slate-700 hover:text-navy-900 hover:bg-slate-100 text-xs xl:text-sm font-semibold transition border border-slate-200">
+              <i data-lucide="user" class="w-4 h-4 text-emerald-600"></i> Sign In
+            </a>
+            <a href="#profile" id="nav-btn-profile" class="hidden inline-flex items-center gap-2 px-3 py-1.5 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-800 text-xs xl:text-sm font-semibold transition border border-slate-200">
+              <span id="nav-user-avatar" class="w-6 h-6 rounded-full bg-navy-900 text-emerald-400 text-[10px] font-bold flex items-center justify-center">U</span>
+              <span id="nav-user-name" class="max-w-[100px] truncate">My Account</span>
+            </a>
+          </div>
+
+          <a href="#survey" class="hidden sm:inline-flex items-center gap-2 px-4.5 py-2 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-xs sm:text-sm shadow-md shadow-emerald-600/25 hover:shadow-emerald-600/35 transition transform hover:-translate-y-0.5">
             <i data-lucide="sparkles" class="w-4 h-4"></i> Take Survey
           </a>
 
@@ -115,6 +126,20 @@
 
     <!-- Mobile Navigation Drawer -->
     <div id="mobile-menu" class="hidden lg:hidden border-t border-slate-200 bg-white px-4 pt-3 pb-5 space-y-1 shadow-lg animate-fade-in">
+      <div id="mobile-auth-section" class="pb-2 mb-2 border-b border-slate-100">
+        <a href="#login" id="mobile-btn-signin" class="block px-3 py-2.5 rounded-xl text-sm font-bold text-emerald-800 bg-emerald-50/80 flex items-center gap-2">
+          <i data-lucide="user" class="w-4 h-4"></i> Sign In / Create Account
+        </a>
+        <div id="mobile-user-profile" class="hidden flex items-center justify-between px-3 py-2 rounded-xl bg-slate-50 border border-slate-200">
+          <a href="#profile" class="flex items-center gap-2 text-sm font-bold text-slate-800 truncate">
+            <span id="mobile-user-avatar" class="w-7 h-7 rounded-full bg-navy-900 text-emerald-400 text-xs font-bold flex items-center justify-center shrink-0">U</span>
+            <span id="mobile-user-name" class="truncate">My Account</span>
+          </a>
+          <button type="button" id="mobile-btn-logout" class="text-xs text-rose-600 font-semibold hover:underline">
+            Sign Out
+          </button>
+        </div>
+      </div>
       <a href="#home" class="block px-3 py-2.5 rounded-xl text-sm font-semibold text-slate-700 hover:bg-slate-50">
         Home
       </a>
@@ -185,6 +210,7 @@
             <li><a href="#results" class="hover:text-emerald-400 transition">Personalized Score</a></li>
             <li><a href="#learn" class="hover:text-emerald-400 transition">Learn Modules</a></li>
             <li><a href="#calculators" class="hover:text-emerald-400 transition">Financial Calculators</a></li>
+            <li><a href="#login" class="hover:text-emerald-400 transition">User Sign In / Sign Up</a></li>
           </ul>
         </div>
 

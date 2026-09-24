@@ -11,6 +11,7 @@ import { renderCalculators } from './calculators.js';
 import { renderQuiz } from './quiz.js';
 import { renderInsightsDashboard } from './insights.js';
 import { renderAdminDashboard } from './admin.js';
+import { renderAuthPage, renderUserProfile } from './auth.js';
 
 export function initRouter() {
   window.addEventListener('hashchange', handleRouteChange);
@@ -69,6 +70,18 @@ function handleRouteChange() {
     case 'admin':
       renderAdminDashboard(appMain);
       break;
+    case 'login':
+      renderAuthPage(appMain, 'signin');
+      break;
+    case 'signup':
+      renderAuthPage(appMain, 'signup');
+      break;
+    case 'auth':
+      renderAuthPage(appMain, 'signin');
+      break;
+    case 'profile':
+      renderUserProfile(appMain);
+      break;
     default:
       renderHomePage(appMain);
       break;
@@ -97,6 +110,51 @@ function updateNavbarActive(activeRoute) {
     } else {
       myScoreBtn.classList.add('hidden');
     }
+  }
+
+  // Update Auth buttons in navbar (Desktop & Mobile)
+  const user = state.currentUser;
+  const navBtnSignin = document.getElementById('nav-btn-signin');
+  const navBtnProfile = document.getElementById('nav-btn-profile');
+  const navUserName = document.getElementById('nav-user-name');
+  const navUserAvatar = document.getElementById('nav-user-avatar');
+
+  const mobileBtnSignin = document.getElementById('mobile-btn-signin');
+  const mobileUserProfile = document.getElementById('mobile-user-profile');
+  const mobileUserName = document.getElementById('mobile-user-name');
+  const mobileUserAvatar = document.getElementById('mobile-user-avatar');
+  const mobileBtnLogout = document.getElementById('mobile-btn-logout');
+
+  if (user) {
+    const firstName = user.name.split(' ')[0] || user.name;
+    const initials = user.name.split(' ').map(n => n[0]).join('').toUpperCase().slice(0, 2);
+
+    if (navBtnSignin) navBtnSignin.classList.add('hidden');
+    if (navBtnProfile) {
+      navBtnProfile.classList.remove('hidden');
+      if (navUserName) navUserName.textContent = firstName;
+      if (navUserAvatar) navUserAvatar.textContent = initials;
+    }
+
+    if (mobileBtnSignin) mobileBtnSignin.classList.add('hidden');
+    if (mobileUserProfile) {
+      mobileUserProfile.classList.remove('hidden');
+      if (mobileUserName) mobileUserName.textContent = user.name;
+      if (mobileUserAvatar) mobileUserAvatar.textContent = initials;
+    }
+    if (mobileBtnLogout) {
+      mobileBtnLogout.onclick = () => {
+        state.logoutUser();
+        showToast('Signed out successfully.', 'info');
+        window.location.hash = '#home';
+      };
+    }
+  } else {
+    if (navBtnSignin) navBtnSignin.classList.remove('hidden');
+    if (navBtnProfile) navBtnProfile.classList.add('hidden');
+
+    if (mobileBtnSignin) mobileBtnSignin.classList.remove('hidden');
+    if (mobileUserProfile) mobileUserProfile.classList.add('hidden');
   }
 }
 

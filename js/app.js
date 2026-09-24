@@ -31,11 +31,17 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // 2. State change subscription to update navbar indicators
   state.subscribe((event) => {
-    if (event === 'profile') {
+    if (event === 'profile' || event === 'auth') {
       const myScoreNav = document.getElementById('nav-my-score');
-      if (myScoreNav && state.userProfile) {
-        myScoreNav.classList.remove('hidden');
+      if (myScoreNav) {
+        if (state.userProfile && state.userProfile.overallScore) {
+          myScoreNav.classList.remove('hidden');
+        } else {
+          myScoreNav.classList.add('hidden');
+        }
       }
+      // Re-trigger navbar active check
+      window.dispatchEvent(new HashChangeEvent('hashchange'));
     }
   });
 
