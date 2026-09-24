@@ -5,6 +5,7 @@
 
 import { initRouter } from './modules/router.js';
 import { state } from './modules/state.js';
+import { initApiKeyControls, openApiKeyModal } from './modules/apiKeyModal.js';
 
 document.addEventListener('DOMContentLoaded', () => {
   // 1. Mobile Hamburger Menu Toggle
@@ -22,7 +23,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     // Close mobile menu when clicking any link inside it
-    mobileMenu.querySelectorAll('a').forEach(link => {
+    mobileMenu.querySelectorAll('a, button').forEach(link => {
       link.addEventListener('click', () => {
         mobileMenu.classList.add('hidden');
       });
@@ -39,11 +40,24 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
 
-  // 3. Initialize Router
+  // 3. Initialize Gemini AI Key Navbar & Dialog Controls
+  initApiKeyControls();
+
+  // Footer Gemini settings click
+  const footerKeyBtn = document.getElementById('footer-btn-gemini-key');
+  if (footerKeyBtn) {
+    footerKeyBtn.addEventListener('click', (e) => {
+      e.preventDefault();
+      openApiKeyModal();
+    });
+  }
+
+  // 4. Initialize Router
   initRouter();
 
-  // 4. Lucide icons boot
+  // 5. Lucide icons boot
   if (window.lucide) {
     window.lucide.createIcons();
   }
 });
+
