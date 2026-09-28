@@ -9,6 +9,8 @@ import { renderResultsDashboard } from './results.js';
 import { renderLearnPage } from './learn.js';
 import { renderCalculators } from './calculators.js';
 import { renderQuiz } from './quiz.js';
+import { renderAiQuizPage } from './aiQuiz.js';
+import { openApiKeyModal } from './apiKeyModal.js';
 import { renderInsightsDashboard } from './insights.js';
 import { renderAdminDashboard } from './admin.js';
 
@@ -59,6 +61,12 @@ function handleRouteChange() {
       break;
     case 'quiz':
       renderQuiz(appMain);
+      break;
+    case 'ai-quiz':
+      renderAiQuizPage(appMain);
+      break;
+    case 'gemini-key':
+      openApiKeyModal();
       break;
     case 'insights':
       renderInsightsDashboard(appMain);
@@ -166,6 +174,34 @@ function renderHomePage(container) {
         </div>
       </div>
     </section>
+
+    <!-- Gemini AI Quiz Feature Showcase Card -->
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 -mt-8 relative z-20">
+      <div class="bg-white rounded-3xl p-6 sm:p-8 shadow-xl border border-emerald-100 flex flex-col md:flex-row items-center justify-between gap-6">
+        <div class="flex items-center gap-4">
+          <div class="w-14 h-14 rounded-2xl bg-navy-900 text-emerald-400 flex items-center justify-center shrink-0 shadow-md">
+            <i data-lucide="sparkles" class="w-7 h-7"></i>
+          </div>
+          <div>
+            <div class="flex items-center gap-2">
+              <span class="px-2.5 py-0.5 rounded-full bg-emerald-100 text-emerald-800 text-[10px] font-black uppercase tracking-wider">New</span>
+              <span class="text-xs font-semibold text-slate-500">Google Gemini AI Integration</span>
+            </div>
+            <h3 class="text-lg sm:text-xl font-bold text-slate-900 mt-1">
+              AI-Powered Financial Quiz Generator
+            </h3>
+            <p class="text-xs sm:text-sm text-slate-600 mt-0.5">
+              Generate custom scenario quizzes on any money topic with your own Google Gemini API key.
+            </p>
+          </div>
+        </div>
+        <div class="flex items-center gap-3 w-full md:w-auto shrink-0">
+          <a href="#ai-quiz" class="w-full md:w-auto inline-flex items-center justify-center gap-2 px-6 py-3 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-xs sm:text-sm shadow-md transition transform hover:-translate-y-0.5">
+            <i data-lucide="zap" class="w-4 h-4"></i> Try AI Quiz Generator
+          </a>
+        </div>
+      </div>
+    </div>
 
     <!-- Why Financial Literacy Matters Section -->
     <section class="py-16 md:py-24 bg-slate-50 border-y border-slate-200">

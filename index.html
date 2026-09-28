@@ -90,6 +90,9 @@
           <a href="#quiz" class="nav-link px-3 py-2 rounded-lg text-xs xl:text-sm font-semibold transition" data-route="quiz">
             Quiz
           </a>
+          <a href="#ai-quiz" class="nav-link px-3 py-2 rounded-lg text-xs xl:text-sm font-semibold transition flex items-center gap-1.5" data-route="ai-quiz">
+            AI Quiz <span class="px-1.5 py-0.5 rounded-full bg-emerald-100 text-emerald-800 text-[10px] font-black uppercase tracking-wider">AI</span>
+          </a>
           <a href="#insights" class="nav-link px-3 py-2 rounded-lg text-xs xl:text-sm font-semibold transition" data-route="insights">
             Survey Insights
           </a>
@@ -99,8 +102,19 @@
         </nav>
 
         <!-- CTA Action & Mobile Hamburger -->
-        <div class="flex items-center gap-3">
-          <a href="#survey" class="hidden sm:inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-xs sm:text-sm shadow-md shadow-emerald-600/25 hover:shadow-emerald-600/35 transition transform hover:-translate-y-0.5">
+        <div class="flex items-center gap-2.5 sm:gap-3">
+          <!-- Gemini API Key Navbar Button -->
+          <button 
+            id="btn-gemini-key" 
+            type="button" 
+            class="inline-flex items-center gap-1.5 sm:gap-2 px-3 py-2 rounded-xl border border-slate-200 hover:border-emerald-400 bg-white hover:bg-slate-50 text-slate-700 font-bold text-xs shadow-xs transition"
+            title="Configure Google Gemini API Key">
+            <span id="gemini-key-dot" class="w-2 h-2 rounded-full bg-amber-400"></span>
+            <i data-lucide="key" class="w-3.5 h-3.5 text-emerald-700"></i>
+            <span id="gemini-key-label" class="hidden sm:inline">Gemini AI</span>
+          </button>
+
+          <a href="#survey" class="hidden sm:inline-flex items-center gap-2 px-4 sm:px-5 py-2.5 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-xs sm:text-sm shadow-md shadow-emerald-600/25 hover:shadow-emerald-600/35 transition transform hover:-translate-y-0.5">
             <i data-lucide="sparkles" class="w-4 h-4"></i> Take Survey
           </a>
 
@@ -136,6 +150,24 @@
       <a href="#quiz" class="block px-3 py-2.5 rounded-xl text-sm font-semibold text-slate-700 hover:bg-slate-50">
         Financial Literacy Quiz
       </a>
+      <a href="#ai-quiz" class="flex items-center justify-between px-3 py-2.5 rounded-xl text-sm font-bold text-emerald-800 bg-emerald-50/60 hover:bg-emerald-50">
+        <span class="flex items-center gap-2">
+          <i data-lucide="sparkles" class="w-4 h-4 text-emerald-600"></i> AI Quiz Generator
+        </span>
+        <span class="text-[10px] px-2 py-0.5 rounded-full bg-emerald-600 text-white font-black uppercase">Gemini</span>
+      </a>
+      <!-- Mobile Gemini API Key Action -->
+      <button 
+        id="btn-mobile-gemini-key" 
+        type="button" 
+        class="w-full flex items-center justify-between px-3 py-2.5 rounded-xl text-sm font-semibold text-slate-700 hover:bg-slate-50 text-left">
+        <span class="flex items-center gap-2">
+          <i data-lucide="key" class="w-4 h-4 text-emerald-600"></i> Gemini API Key Settings
+        </span>
+        <span id="mobile-gemini-status" class="text-[10px] px-2 py-0.5 rounded-full bg-amber-100 text-amber-800 font-bold uppercase">
+          Not Set
+        </span>
+      </button>
       <a href="#insights" class="block px-3 py-2.5 rounded-xl text-sm font-semibold text-slate-700 hover:bg-slate-50">
         Survey Insights & Research
       </a>
@@ -185,6 +217,7 @@
             <li><a href="#results" class="hover:text-emerald-400 transition">Personalized Score</a></li>
             <li><a href="#learn" class="hover:text-emerald-400 transition">Learn Modules</a></li>
             <li><a href="#calculators" class="hover:text-emerald-400 transition">Financial Calculators</a></li>
+            <li><a href="#ai-quiz" class="hover:text-emerald-400 transition flex items-center gap-1.5 font-semibold text-emerald-400">AI Quiz Generator <span class="text-[9px] bg-emerald-500/20 text-emerald-300 px-1 py-0.5 rounded font-black uppercase">Gemini</span></a></li>
           </ul>
         </div>
 
@@ -193,7 +226,8 @@
           <h4 class="text-xs font-bold uppercase tracking-wider text-white mb-3">Research & Governance</h4>
           <ul class="space-y-2">
             <li><a href="#insights" class="hover:text-emerald-400 transition">Survey Insights & Analytics</a></li>
-            <li><a href="#quiz" class="hover:text-emerald-400 transition">Take Money Quiz</a></li>
+            <li><a href="#quiz" class="hover:text-emerald-400 transition">Standard Money Quiz</a></li>
+            <li><a href="#gemini-key" class="hover:text-emerald-400 transition flex items-center gap-1.5"><i data-lucide="key" class="w-3.5 h-3.5 text-emerald-400"></i> Gemini AI Settings</a></li>
             <li><a href="#privacy" class="hover:text-emerald-400 transition">Privacy & Data Ethics</a></li>
             <li><a href="#admin" class="hover:text-emerald-400 transition">Admin / Researcher Portal</a></li>
           </ul>
