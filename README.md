@@ -119,6 +119,26 @@ Open `index.html` directly in any modern browser (Chrome, Edge, Firefox, Safari)
 
 ---
 
+## 🚀 Deploy on Vercel
+
+FinSmart is optimized for zero-configuration, instant deployment on Vercel.
+
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2FSwayam07-afk%2FFinSmart)
+
+### Option A: 1-Click Dashboard Import (Recommended)
+1. Go to [vercel.com/new](https://vercel.com/new).
+2. Connect your GitHub account and import **`Swayam07-afk/FinSmart`**.
+3. Keep the default settings (Framework preset: `Other`, Root directory: `./`).
+4. Click **Deploy**. Your site will be live on an HTTPS `.vercel.app` domain in ~15 seconds.
+
+### Option B: Deploy via Vercel CLI
+```bash
+npm install -g vercel
+vercel
+```
+
+---
+
 ## 📂 File Hierarchy
 
 ```
