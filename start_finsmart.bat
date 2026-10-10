@@ -9,7 +9,7 @@ where node >nul 2>nul
 if %ERRORLEVEL% EQU 0 (
   echo Launching via Node.js server...
   start http://localhost:8000
-  node server.js
+  node local_server.js
   goto end
 )
 

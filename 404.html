@@ -2,10 +2,12 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta http-equiv="refresh" content="0; url=/">
   <script>
-    // SPA fallback redirect preserving hash and query params
-    window.location.replace('/' + window.location.search + window.location.hash);
+    // SPA fallback redirect preserving query and hash across root and sub-path deployments
+    const pathname = window.location.pathname;
+    const isGhPages = pathname.toLowerCase().includes('/finsmart');
+    const basePath = isGhPages ? '/FinSmart/' : '/';
+    window.location.replace(basePath + window.location.search + window.location.hash);
   </script>
   <title>Redirecting to FinSmart...</title>
 </head>
